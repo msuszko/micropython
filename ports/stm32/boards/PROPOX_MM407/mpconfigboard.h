@@ -1,12 +1,14 @@
 #define MICROPY_HW_BOARD_NAME       "PROPOX MMSTM32F407"
 #define MICROPY_HW_MCU_NAME         "STM32F407"
 
+#define MICROPY_PY_LWIP             (1)
 #define MICROPY_HW_HAS_FLASH        (1)
 #define MICROPY_HW_HAS_SDCARD       (1)
 #define MICROPY_HW_ENABLE_RNG       (1)
 #define MICROPY_HW_ENABLE_RTC       (1)
 #define MICROPY_HW_ENABLE_DAC       (1)
 #define MICROPY_HW_ENABLE_USB       (1)
+#define MICROPY_HW_ENABLE_ETH_RMII  (1)
 
 // HSE is 25MHz
 #define MICROPY_HW_CLK_PLLM (25)
@@ -68,3 +70,15 @@
 #define MICROPY_HW_USB_FS              (1)
 #define MICROPY_HW_USB_VBUS_DETECT_PIN (pin_C9)
 #define MICROPY_HW_USB_OTG_ID_PIN      (pin_A10)
+
+// Ethernet RMII Interface
+#define RMII_REF_CLK                (pin_A1)
+#define RMII_MDIO                   (pin_A2)
+#define RMII_MDC                    (pin_C1)
+#define RMII_MII_CRS_DV             (pin_A7)
+#define RMII_MII_RXD0               (pin_C4)
+#define RMII_MII_RXD1               (pin_C5)
+//#define RMII_MII_RXER               (pin_G2)
+#define RMII_MII_TX_EN              (pin_B11)
+#define RMII_MII_TXD0               (pin_B12)
+#define RMII_MII_TXD1               (pin_B13)

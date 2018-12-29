@@ -128,8 +128,10 @@ void HAL_ETH_MspInit(ETH_HandleTypeDef *heth)
   HAL_GPIO_Init(pyb_pin_RMII_MII_RXD0->gpio, &GPIO_InitStructure);
   GPIO_InitStructure.Pin = pyb_pin_RMII_MII_RXD1->pin_mask;
   HAL_GPIO_Init(pyb_pin_RMII_MII_RXD1->gpio, &GPIO_InitStructure);
+#ifdef RMII_MII_RXER
   GPIO_InitStructure.Pin = pyb_pin_RMII_MII_RXER->pin_mask;
   HAL_GPIO_Init(pyb_pin_RMII_MII_RXER->gpio, &GPIO_InitStructure);
+#endif
   GPIO_InitStructure.Pin = pyb_pin_RMII_MII_TX_EN->pin_mask;
   HAL_GPIO_Init(pyb_pin_RMII_MII_TX_EN->gpio, &GPIO_InitStructure);
   GPIO_InitStructure.Pin = pyb_pin_RMII_MII_TXD0->pin_mask;
@@ -301,8 +303,10 @@ err_t low_level_output(struct netif *netif, struct pbuf *p)
     framelength = framelength + byteslefttocopy;
   }
 
+#if __DCACHE_PRESENT == 1
   /* Clean and Invalidate data cache */
   SCB_CleanInvalidateDCache();  
+#endif
   /* Prepare transmit descriptors to give to DMA */ 
   HAL_ETH_TransmitFrame(&EthHandle, framelength);
   
@@ -355,8 +359,10 @@ static struct pbuf * low_level_input(struct netif *netif)
     p = pbuf_alloc(PBUF_RAW, len, PBUF_POOL);
   }
   
+#if __DCACHE_PRESENT == 1
   /* Clean and Invalidate data cache */
   SCB_CleanInvalidateDCache();
+#endif
   
   if (p != NULL)
   {
