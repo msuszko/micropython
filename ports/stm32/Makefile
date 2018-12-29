@@ -268,6 +268,8 @@ SRC_C = \
 	servo.c \
 	dac.c \
 	adc.c \
+	ethernetif.c \
+	network_ethernet.c \
 	$(wildcard $(BOARD_DIR)/*.c)
 
 ifeq ($(MCU_SERIES),f0)
@@ -292,6 +294,7 @@ SRC_HAL = $(addprefix $(HAL_DIR)/Src/stm32$(MCU_SERIES)xx_,\
 	hal_dac.c \
 	hal_dac_ex.c \
 	hal_dma.c \
+	hal_eth.c \
 	hal_flash.c \
 	hal_flash_ex.c \
 	hal_gpio.c \
